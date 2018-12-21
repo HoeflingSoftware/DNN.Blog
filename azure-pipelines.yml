@@ -1,0 +1,17 @@
+resources:
+  repositories:
+    - repository: DevOps
+      type: git
+      ref: 'refs/heads/master'
+      name: "DevOps.Templates"
+
+trigger:
+  branches:
+    include:
+    - master 
+    
+jobs:
+- template: azure-pipelines.yml@DevOps
+  parameters:
+    version: "6.0.4.$[counter('versioncounter', 0)]"
+    moduleType: "WEB-FORMS"
